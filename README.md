@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gagesmithcode/Piezas.svg?branch=master)](https://travis-ci.org/gagesmithcode/Piezas)
+[![Coverage Status](https://coveralls.io/repos/github/gagesmithcode/Piezas/badge.svg?branch=master)](https://coveralls.io/github/gagesmithcode/Piezas?branch=master)
 # Piezas
 
 ## Associated Enumerated Types
