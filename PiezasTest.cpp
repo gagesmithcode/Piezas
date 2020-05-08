@@ -21,9 +21,9 @@ TEST(PiezasTest, sanityCheck)
 
 TEST(PiezasTest, boardConstructionTest)
 {
-	Piezas myboard = new Piezas();
-	EXPECT_EQ(myboard.size(), 4);
-	EXPECT_EQ(myboard[0].size(), 3);
+	Piezas game;
+	EXPECT_EQ(game.board.size(), 4);
+	EXPECT_EQ(game.board[0].size(), 3);
 
 	// ASSERT_TRUE(turn == X);
 }
