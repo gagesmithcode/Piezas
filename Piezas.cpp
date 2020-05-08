@@ -159,9 +159,9 @@ Piece Piezas::gameState()
     int rowSize = board.size();
     int columnSize = board[0].size();
 
-    for (int i = 0; i < columnSize; i++)
+    for (int i = 0; i < rowSize; i++)
     {
-        for (int j = 0; j < rowSize; j++)
+        for (int j = 0; j < columnSize; j++)
         {
 
             if (board[i][j] == temp)
