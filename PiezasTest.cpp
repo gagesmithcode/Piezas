@@ -22,8 +22,7 @@ TEST(PiezasTest, sanityCheck)
 TEST(PiezasTest, boardConstructionTest)
 {
 	Piezas game;
-	EXPECT_EQ(game.board.size(), 4);
-	EXPECT_EQ(game.board[0].size(), 3);
-
+	ASSERT_EQ(game.dropPiece(0), O);
+	
 	// ASSERT_TRUE(turn == X);
 }
