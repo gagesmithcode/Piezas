@@ -109,8 +109,6 @@ Piece Piezas::pieceAt(int row, int column)
                 return board[i][j];
         }
     }
-    //Defaulting a blank return
-    return Blank;
 }
 
 /**
