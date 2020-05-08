@@ -67,3 +67,27 @@ TEST(PiezasTest, resetBoard)
 	game.reset();
 	ASSERT_NE(game.dropPiece(0), Blank);
 }
+
+TEST(PiezasTest, pieceAtFunctionality)
+{
+	Piezas game;
+
+	//checking for pieceAt a blank spot
+	EXPECT_EQ(game.pieceAt(0, 0), Blank);
+	//Fill the board with a arbitrary Pieces to get data about 
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 4; j++)
+			game.dropPiece(j);
+
+	//Since it is X's turn first the first piece droped at [0,0] should be X
+	EXPECT_EQ(game.pieceAt(0, 0), X);
+
+	//Testing for invalid row
+	ASSERT_EQ(game.pieceAt(3, 0), Invalid);
+	ASSERT_EQ(game.pieceAt(-1, 0), Invalid);
+
+	//Testing for invalid column
+	ASSERT_EQ(game.pieceAt(0, 4), Invalid);
+	ASSERT_EQ(game.pieceAt(0, -1), Invalid);
+	
+}
