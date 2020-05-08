@@ -135,22 +135,18 @@ Piece Piezas::gameState()
             if (board[i][j] == Blank)
                 return Invalid;
             else if (board[i][j] == temp)
+            {
                 //increment the count since it is a continued Piece
                 rowCount++;
-            else
-            {
                 //If it's x and worthy of score
                 if (board[i][j] == X && winX < rowCount)
-                {
                     winX = rowCount;
-                    rowCount = 0;
-                }
                 else if (board[i][j] == O && winO < rowCount)
-                {
                     winO = rowCount;
-                    rowCount = 0;
-                }
             }
+            else
+                //Change the temp to count the other piece list
+                temp = board[i][j];
         }
         rowCount = 0;
     }
@@ -159,23 +155,22 @@ Piece Piezas::gameState()
     int rowSize = board.size();
     int columnSize = board[0].size();
 
-    for (int i = 0; i < rowSize; i++)
+    for (int i = 0; i < columnSize; i++)
     {
-        for (int j = 0; j < columnSize; j++)
+        for (int j = 0; j < rowSize; j++)
         {
-
-            if (board[i][j] == temp)
+            if (board[j][i] == temp)
                 //increment the count since it is a continued Piece
                 rowCount++;
             else
             {
                 //If it's x and worthy of score
-                if (board[i][j] == X && winX < rowCount)
+                if (board[j][i] == X && winX < rowCount)
                 {
                     winX = rowCount;
                     rowCount = 0;
                 }
-                else if (board[i][j] == O && winO < rowCount)
+                else if (board[j][i] == O && winO < rowCount)
                 {
                     winO = rowCount;
                     rowCount = 0;
