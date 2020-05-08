@@ -19,10 +19,11 @@ TEST(PiezasTest, sanityCheck)
 	ASSERT_TRUE(true);
 }
 
-TEST(PiezasTest, boardConstructionTest)
+TEST(PiezasTest, simpleDropPieces)
 {
 	Piezas game;
-	ASSERT_EQ(game.dropPiece(0), O);
-	
-	// ASSERT_TRUE(turn == X);
+	//First move should return X
+	EXPECT_EQ(game.dropPiece(0), X);
+	//Second move should return O
+	EXPECT_EQ(game.dropPiece(1), O);
 }
