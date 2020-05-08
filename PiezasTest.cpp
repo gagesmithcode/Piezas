@@ -27,3 +27,19 @@ TEST(PiezasTest, simpleDropPieces)
 	//Second move should return O
 	EXPECT_EQ(game.dropPiece(1), O);
 }
+
+TEST(PiezasTest, dropPiecesErroring)
+{
+	Piezas game;
+
+	//Fill a column
+	EXPECT_EQ(game.dropPiece(0), X);
+	EXPECT_EQ(game.dropPiece(0), O);
+	EXPECT_EQ(game.dropPiece(0), X);
+
+	//Checking to make sure filling a full column returns blank
+	ASSERT_EQ(game.dropPiece(0), Blank);
+
+	//testing an out of bounds dropPiece
+	ASSERT_EQ(game.dropPiece(4), Invalid);
+}
