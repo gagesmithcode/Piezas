@@ -18,3 +18,11 @@ TEST(PiezasTest, sanityCheck)
 {
 	ASSERT_TRUE(true);
 }
+
+TEST(PiezasTest, boardConstructionTest)
+{
+	EXPECT_EQ(board.size() == 4);
+	EXPECT_EQ(board[0].size() == 3);
+
+	ASSERT_TRUE(turn == X);
+}
