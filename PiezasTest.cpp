@@ -39,7 +39,11 @@ TEST(PiezasTest, dropPiecesErroring)
 
 	//Checking to make sure filling a full column returns blank
 	ASSERT_EQ(game.dropPiece(0), Blank);
+	//second assertion for coverage of Blank for both player turns
+	ASSERT_EQ(game.dropPiece(0), Blank);
 
 	//testing an out of bounds dropPiece
+	ASSERT_EQ(game.dropPiece(4), Invalid);
+	//second assertion for coverage of Invalid for both player turns
 	ASSERT_EQ(game.dropPiece(4), Invalid);
 }
