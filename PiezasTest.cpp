@@ -124,18 +124,20 @@ TEST(PiezasTest, testingGameStateWinVertical)
 {
 	Piezas game;
 
+	//Hard coding a win for X vertically
 	game.dropPiece(0);
 	game.dropPiece(1);
 	game.dropPiece(0);
 	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(1);
+	game.dropPiece(1);
+	game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(2);
 	game.dropPiece(0);
-	game.dropPiece(2);
 	game.dropPiece(3);
-	game.dropPiece(2);
-	game.dropPiece(3);
-	game.dropPiece(3);
-	game.dropPiece(1);
-	game.dropPiece(1);
+	
 
-	EXPECT_NE(game.gameState(), X);
+	EXPECT_NE(game.gameState(), O);
 }
