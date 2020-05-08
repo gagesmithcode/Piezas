@@ -89,5 +89,16 @@ TEST(PiezasTest, pieceAtFunctionality)
 	//Testing for invalid column
 	ASSERT_EQ(game.pieceAt(0, 4), Invalid);
 	ASSERT_EQ(game.pieceAt(0, -1), Invalid);
+}
+
+TEST(PiezasTest, testingGameStateWin)
+{
+	Piezas game;
+
+	//Fill the board with a arbitrary Pieces to get data about 
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 4; j++)
+			game.dropPiece(j);
 	
+	EXPECT_NE(game.gameState(), Invalid);
 }
