@@ -15,13 +15,16 @@
  * dropped in column 2 should take [1,2].
 **/
 
-
 /**
  * Constructor sets an empty board (default 3 rows, 4 columns) and 
  * specifies it is X's turn first
 **/
 Piezas::Piezas()
 {
+    //Resizing the board to default size
+    board.resize(4, std::vector<Piece>(3, Blank));
+    // Set the turn as X's turn to start
+    turn = X;
 }
 
 /**
@@ -30,6 +33,10 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
+    //Loop through game board to reset it to blank
+    for (int i = 0; i < (int)board.size(); i++)
+        for (int j = 0; j < (int)board[i].size(); j++)
+            board[i][j] = Blank;
 }
 
 /**
@@ -39,9 +46,36 @@ void Piezas::reset()
  * In that case, placePiece returns Piece Blank value 
  * Out of bounds coordinates return the Piece Invalid value
  * Trying to drop a piece where it cannot be placed loses the player's turn
-**/ 
+**/
 Piece Piezas::dropPiece(int column)
 {
+    //Error testing the parameter
+    if (column > 2 || column < 0)
+    {
+        if (turn == X)
+            turn = O;
+        else
+            turn = X;
+
+        return Invalid;
+    }
+
+    //Loop across the rows of the board
+    for (int i = 0; i < (int)board.size(); i++)
+    {
+        if (board[i][column] != Blank)
+        {
+            board[i][column] = turn;
+            Piece thing = turn;
+            if (turn == X)
+                turn = O;
+            else
+                turn = X;
+            return thing;
+        }
+    }
+
+    //If the whole column is filled return Blank
     return Blank;
 }
 
@@ -51,6 +85,26 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
+    //Testing for invalid coordinates
+    if (row > 3 || row < 0)
+        return Invalid;
+    if (column > 2 || column < 0)
+        return Invalid;
+
+    //Loop through game board
+    for (int i = 0; i < (int)board.size(); i++)
+    {
+        for (int j = 0; j < (int)board[i].size(); j++)
+        {
+            //If no piece in that spot
+            if (board[i][j] == Blank)
+                return Blank;
+            //If there is a piece there return what the piece is
+            else
+                return board[i][j];
+        }
+    }
+    //Defaulting a blank return
     return Blank;
 }
 
@@ -65,5 +119,74 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
-    return Blank;
+    int winX = 0, winO = 0;
+    int rowCount = 0;
+    Piece temp = board[0][0];
+
+    //Count horizontal lines
+    for (int i = 0; i < (int)board.size(); i++)
+    {
+        for (int j = 0; j < (int)board[i].size(); j++)
+        {
+            //If the board isn't filled
+            if(board[i][j] == Blank)
+                return Invalid;
+            else if(board[i][j] == temp)
+                //increment the count since it is a continued Piece
+                rowCount++;
+            else
+            {
+                //If it's x and worthy of score
+                if(board[i][j] == X && winX < rowCount)
+                {
+                    winX = rowCount;
+                    rowCount = 0;
+                }
+                else if(board[i][j] == O && winO < rowCount)
+                {
+                    winO = rowCount;
+                    rowCount = 0;
+                }
+            }
+            
+        }
+        rowCount = 0;
+    }
+
+    //since the size is static we can set size vars
+    int rowSize = board.size();
+    int columnSize = board[0].size();
+    
+    for(int i = 0; i < columnSize; i++)
+    {
+        for(int j = 0; j < rowSize; j++)
+        {
+
+            if(board[i][j] == temp)
+                //increment the count since it is a continued Piece
+                rowCount++;
+            else
+            {
+                //If it's x and worthy of score
+                if(board[i][j] == X && winX < rowCount)
+                {
+                    winX = rowCount;
+                    rowCount = 0;
+                }
+                else if(board[i][j] == O && winO < rowCount)
+                {
+                    winO = rowCount;
+                    rowCount = 0;
+                }
+            }
+        }
+        rowCount = 0;
+    }
+
+    if(winX > winO)
+        return X;
+    else if(winX < winO)
+        return O;
+    else 
+        return Blank;
 }
