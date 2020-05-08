@@ -47,3 +47,23 @@ TEST(PiezasTest, dropPiecesErroring)
 	//second assertion for coverage of Invalid for both player turns
 	ASSERT_EQ(game.dropPiece(4), Invalid);
 }
+
+TEST(PiezasTest, resetBoard)
+{
+	Piezas game;
+
+	//Fill the board with a arbitrary Piece
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 4; j++)
+			game.dropPiece(j);
+
+	//Now that the board is filled let's test that it actually is
+	EXPECT_EQ(game.dropPiece(0), Blank);
+	EXPECT_EQ(game.dropPiece(1), Blank);
+	EXPECT_EQ(game.dropPiece(2), Blank);
+	EXPECT_EQ(game.dropPiece(3), Blank);
+	
+	//Run reset
+	game.reset();
+	ASSERT_NE(game.dropPiece(0), Blank);
+}
