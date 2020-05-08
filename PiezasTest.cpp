@@ -101,4 +101,21 @@ TEST(PiezasTest, testingGameStateWin)
 			game.dropPiece(j);
 	
 	EXPECT_NE(game.gameState(), Invalid);
+
+	//Force a X win
+	game.reset();
+	game.dropPiece(0);
+	game.dropPiece(0);
+	game.dropPiece(1);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(3);
+	game.dropPiece(1);
+	game.dropPiece(1);
+
+	EXPECT_NE(game.gameState(), Invalid);
 }
