@@ -91,7 +91,7 @@ TEST(PiezasTest, pieceAtFunctionality)
 	ASSERT_EQ(game.pieceAt(0, -1), Invalid);
 }
 
-TEST(PiezasTest, testingGameStateWin)
+TEST(PiezasTest, testingGameStateWinHorizontal)
 {
 	Piezas game;
 
@@ -117,5 +117,25 @@ TEST(PiezasTest, testingGameStateWin)
 	game.dropPiece(1);
 	game.dropPiece(1);
 
-	EXPECT_NE(game.gameState(), Invalid);
+	ASSERT_NE(game.gameState(), O);
+}
+
+TEST(PiezasTest, testingGameStateWinVertical)
+{
+	Piezas game;
+
+	game.dropPiece(0);
+	game.dropPiece(1);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(3);
+	game.dropPiece(1);
+	game.dropPiece(1);
+
+	EXPECT_NE(game.gameState(), X);
 }
