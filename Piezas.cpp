@@ -63,7 +63,7 @@ Piece Piezas::dropPiece(int column)
     //Loop across the rows of the board
     for (int i = 0; i < (int)board.size(); i++)
     {
-        if (board[i][column] != Blank)
+        if (board[i][column] == Blank)
         {
             board[i][column] = turn;
             Piece thing = turn;
