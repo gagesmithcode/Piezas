@@ -145,8 +145,11 @@ Piece Piezas::gameState()
                     winO = rowCount;
             }
             else
+            {
                 //Change the temp to count the other piece list
                 temp = board[i][j];
+                rowCount = 0;
+            }
         }
         rowCount = 0;
     }
@@ -172,8 +175,11 @@ Piece Piezas::gameState()
                     winO = rowCount;
             }
             else
+            {
                 //Change the temp to count the other piece list
                 temp = board[j][i];
+                rowCount = 0;
+            }
         }
         rowCount = 0;
     }
