@@ -95,13 +95,6 @@ TEST(PiezasTest, testingGameStateWinHorizontal)
 {
 	Piezas game;
 
-	//Fill the board with a arbitrary Pieces to get data about 
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 4; j++)
-			game.dropPiece(j);
-	
-	EXPECT_NE(game.gameState(), Invalid);
-
 	//Force a X win
 	game.reset();
 	game.dropPiece(0);
@@ -139,5 +132,22 @@ TEST(PiezasTest, testingGameStateWinVertical)
 	game.dropPiece(3);
 	
 
-	EXPECT_NE(game.gameState(), O);
+	ASSERT_NE(game.gameState(), O);
+}
+
+
+
+TEST(PiezasTest, testingGameStateErrors)
+{
+	Piezas game;
+	//Fill the board with a arbitrary Pieces to get data about 
+    for (int i = 0; i < 3; i++)
+	{
+        for (int j = 0; j < 4; j++)
+		{
+			game.dropPiece(j);
+		}
+	}
+
+	EXPECT_EQ(game.gameState(), Blank);
 }
