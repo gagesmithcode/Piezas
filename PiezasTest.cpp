@@ -95,8 +95,7 @@ TEST(PiezasTest, testingGameStateWinHorizontal)
 {
 	Piezas game;
 
-	//Force a X win
-	game.reset();
+	//Force a X win horizontal
 	game.dropPiece(0);
 	game.dropPiece(0);
 	game.dropPiece(1);
@@ -110,7 +109,24 @@ TEST(PiezasTest, testingGameStateWinHorizontal)
 	game.dropPiece(1);
 	game.dropPiece(1);
 
-	ASSERT_NE(game.gameState(), O);
+	ASSERT_EQ(game.gameState(), X);
+	
+	game.reset();
+	//Forcing a O win horizontal
+	game.dropPiece(0);
+	game.dropPiece(1);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(3);
+	game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(3);
+
+	ASSERT_EQ(game.gameState(), O);
 }
 
 TEST(PiezasTest, testingGameStateWinVertical)
@@ -123,16 +139,34 @@ TEST(PiezasTest, testingGameStateWinVertical)
 	game.dropPiece(0);
 	game.dropPiece(2);
 	game.dropPiece(3);
-	game.dropPiece(1);
-	game.dropPiece(1);
 	game.dropPiece(3);
 	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(0);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(3);
+
+	
+	std::cout << game.gameState() << std::endl;
+	ASSERT_EQ(game.gameState(), X);
+
+	//Hard coding a win for O vertically
+	game.reset();
+	game.dropPiece(0);
+	game.dropPiece(1);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(3);
 	game.dropPiece(2);
 	game.dropPiece(0);
+	game.dropPiece(0);
 	game.dropPiece(3);
-	
+	game.dropPiece(1);
+	game.dropPiece(2);
+	game.dropPiece(3);
 
-	ASSERT_NE(game.gameState(), O);
+	ASSERT_EQ(game.gameState(), O);
 }
 
 
@@ -150,4 +184,18 @@ TEST(PiezasTest, testingGameStateErrors)
 	}
 
 	EXPECT_EQ(game.gameState(), Blank);
+
+	//Testing for a incomplete game
+	game.reset();
+	//With empty board
+	EXPECT_EQ(game.gameState(), Invalid);
+
+	//Drop a few pieces for consistency
+	game.dropPiece(3);
+	game.dropPiece(1);
+	game.dropPiece(2);
+	game.dropPiece(3);
+
+	//Should still hold
+	EXPECT_EQ(game.gameState(), Invalid);
 }
