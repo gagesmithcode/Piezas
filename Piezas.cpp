@@ -162,9 +162,7 @@ Piece Piezas::gameState()
     {
         for (int j = 0; j < rowSize; j++)
         {
-            if (board[j][i] == Blank)
-                return Invalid;
-            else if (board[j][i] == temp)
+            if (board[j][i] == temp)
             {
                 //increment the count since it is a continued Piece
                 rowCount++;
